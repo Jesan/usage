@@ -5,6 +5,6 @@ export queue_id=$1
 export maxrate=$2
 
 
-sudo ovs-vsctl -- -- set $queue_id other-config:max-rate=$maxrate otherconfig:min-rate:$maxrate
+sudo ovs-vsctl -- -- set queue $queue_id other-config:max-rate=$maxrate otherconfig:min-rate=$maxrate
  
 

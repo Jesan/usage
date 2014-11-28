@@ -37,7 +37,7 @@ def home(name,device_id,maxrate,minrate):
 	b=" \n".join(t2)
 	return b
 
-@route('home_sdn/control/<queue_id>,<maxrate>')
+@route('/home_sdn/control/<queue_id>/<maxrate>')
 def home_ctrl(queue_id,maxrate):
 	sh3="sudo ~/usage/home.sh" + " " + str(queue_id) + " "+str(maxrate)
 	print sh3
