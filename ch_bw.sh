@@ -1,9 +1,9 @@
 #!/bin/sh
 
-export qos=$1
-export port=$2
-export queue_id=$3
-export maxrate=$4
 
 
-sudo ovs-vsctl -- set port $port qos=@$qos -- --id=@$qos create QoS type=linux-htb queues=1=@$queue_id -- --id=@$queue_id create Queue other-config:max-rate=$maxrate
+export queue_id=$1
+export maxrate=$2
+
+
+sudo ovs-vsctl -- set $queue_id other-config:max-rate=$maxrate other-config:min-rate=$maxrate
