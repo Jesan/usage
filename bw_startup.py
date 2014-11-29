@@ -9,24 +9,25 @@ import subprocess
 
 #Enabling QoS
 
-@route('/uniwide_sdn/usage/<name>/<device_id>/<maxrate>/<minrate>')
-def en(name,device_id,maxrate,minrate):
-	sh1="sudo ~/usage/enqueue2.sh" + " " + str(name) + " " + str(device_id) + " " + str(maxrate) + " " + str(minrate)
+@route('/uniwide_sdn/usage/<n>/<name>/<device_id>/<maxrate>/<minrate>')
+def en(name,n,device_id,maxrate,minrate):
+	sh1="sudo ~/usage/enqueue2.sh" + " " + str(n) +" " + str(name) + " " + str(device_id) + " " + str(maxrate) + " " + str(minrate)
 	print sh1
 	sh= "macid" + " " + str(device_id) + "  " + subprocess.check_output(sh1,shell=True)
 	sg=sh.split("  ")
 	a=" \n".join(sg)
 	return a
+ 
+@route('/home_sdn/usage/<n>/<name>/<device_id>/<maxrate>/<minrate>')
+def home(name,n,device_id,maxrate,minrate):
 
-@route('/home_sdn/usage/<name>/<device_id>/<maxrate>/<minrate>')
-def home(name,device_id,maxrate,minrate):
-
-        sh2="sudo ~/usage/enqueue1.sh" + " " + str(name) + " " + str(device_id) + " " + str(maxrate) + " " + str(minrate)
-        print sh2
-        t1= "macid " + " " + str(device_id)+ "   " + subprocess.check_output(sh2,shell=True) 
+       	sh2="sudo ~/usage/enqueue1.sh" + " " + str(name) + " " + str(n) + " " + str(device_id) + " " + str(maxrate) + " " + str(minrate)
+       	print sh2
+       	t1= "macid " + " " + str(device_id)+ "   " + subprocess.check_output(sh2,shell=True) 
 	t2=t1.split(" ")
 	b=" \n".join(t2)
 	return b
+
 
 #rate limit control
 
