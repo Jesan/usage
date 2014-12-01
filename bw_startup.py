@@ -18,10 +18,10 @@ def en(name,n,device_id,maxrate,minrate):
 	a=" \n".join(sg)
 	return a
  
-@route('/home_sdn/usage/<n>/<name>/<device_id>/<maxrate>/<minrate>')
+@route('/home_sdn/usage/<name>/<n>/<device_id>/<maxrate>/<minrate>')
 def home(name,n,device_id,maxrate,minrate):
 
-       	sh2="sudo ~/usage/enqueue1.sh" + " " + str(name) + " " + str(n) + " " + str(device_id) + " " + str(maxrate) + " " + str(minrate)
+       	sh2="sudo ~/usage/enqueue1.sh" + " " + str(name) + " " +str(int(n)) + " " + str(device_id) + " " + str(maxrate) + " " + str(minrate)
        	print sh2
        	t1= "macid " + " " + str(device_id)+ "   " + subprocess.check_output(sh2,shell=True) 
 	t2=t1.split(" ")
@@ -65,4 +65,5 @@ if __name__ == "__main__":
         print "Running QConfig"
         run(host='149.171.37.218', port=8082)
 		
+
 	
